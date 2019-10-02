@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomMenuInfo"
+        android:title="Info"
+        android:icon="@drawable/ic_info"
+        />
+    <item
+        android:id="@+id/bottomMenuSchedule"
+        android:title="Schedule"
+        android:icon="@drawable/ic_calendar"
+        />
+    <item
+        android:id="@+id/bottomMenuGrade"
+        android:title="Grade"
+        android:icon="@drawable/ic_passed_exam"
+        />
+    <item
+        android:id="@+id/bottomMenuFinance"
+        android:title="Financial"
+        android:icon="@drawable/ic_money"
+        />
+    <item
+        android:id="@+id/bottomMenuEngineer"
+        android:title="Engineering"
+        android:icon="@drawable/ic_engineering"
+        />
+</menu>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/profileSheetNewProfile"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="visible"
+        >
+
+        <ImageView
+            android:id="@+id/profileAdd"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_add" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@+id/profileAdd"
+            android:textColor="@color/secondaryTextColor"
+            android:text="New Profile"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:typeface="normal" />
+    </RelativeLayout>
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/sheetExpandCreate"
+        app:el_expanded="false"
+        app:el_duration="500"
+        app:el_parallax="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/frame_create_profile"/>
+        </FrameLayout>
+    </net.cachapa.expandablelayout.ExpandableLayout>
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/sheetProfileListContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:el_expanded="true"
+        app:el_duration="500"
+        app:el_parallax="1">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sheetProfileList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/rv_profilelist"/>
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+</LinearLayout>

@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "746631089765",
+    "firebase_url": "https://unsikadu.firebaseio.com",
+    "project_id": "unsikadu",
+    "storage_bucket": "unsikadu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746631089765:android:d96292567037dc05f5808c",
+        "android_client_info": {
+          "package_name": "ml.dvnlabs.unsikadu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746631089765-fk9689jf1l2qf6tnispmhup52l23qc07.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMA5qYVLAEP_vNKMZl09VuMUdW2Yfxu_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746631089765-fk9689jf1l2qf6tnispmhup52l23qc07.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746631089765:android:8b81d52579ced0e9f5808c",
+        "android_client_info": {
+          "package_name": "ml.dvnlabs.unsikadu.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746631089765-fk9689jf1l2qf6tnispmhup52l23qc07.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMA5qYVLAEP_vNKMZl09VuMUdW2Yfxu_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746631089765-fk9689jf1l2qf6tnispmhup52l23qc07.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
