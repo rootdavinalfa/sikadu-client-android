@@ -134,7 +134,6 @@ class gradeAsSemesterListHolder(context: Context,itemView: View) : RecyclerView.
     override fun onClick(v: View?) {
         expandSmt.toggle()
         if(expandSmt.isExpanded){
-            println("Request data!")
             if (token!!.isNotEmpty()){
                 getCourseGradeOnSemester()
             }

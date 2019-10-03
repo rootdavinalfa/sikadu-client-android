@@ -42,10 +42,14 @@ public class RequestQueueVolley {
         return requestQueue;
     }
 
-    public <T> void addToRequestQueue(Request<T> req) {
+    <T> void addToRequestQueue(Request<T> req) {
         req.setRetryPolicy(new DefaultRetryPolicy(5000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        getRequestQueue().add(req);
+        getRequestQueue().add(req).setTag("API");
+    }
+
+    public void stopAllRequest(){
+        getRequestQueue().cancelAll("API");
     }
     public void clearCache() {
         requestQueue.getCache().clear();

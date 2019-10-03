@@ -23,3 +23,5 @@ data class GradeSemester(var Year: String,var Quart: String,var Semester : Strin
 data class GradeCourseSemester(var CourseN: String,var GradeLetter : String, var Num : Int,var Credit : Int,
                                var Avail : Double,var Quiz : Double,var Assignment : Double,var MidTerm : Double,
                                var LastTerm : Double,var GradePoint : Int)
+data class FinanceDetail(var no : Int,var period : String,var charged : Int,var paid : Int,var first : Int,
+                         var second : Int,var third : Int,var remain : Int,var percent : Int,var status : String)

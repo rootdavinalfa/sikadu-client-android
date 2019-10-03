@@ -19,25 +19,26 @@ public class global{
             //val newBackStackLength = fragmentManager.backStackEntryCount + 1
             var anim_enter = 0
             var anim_exit = 0
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            if (anim_res != "NULL") {
-                if (anim_res == "ZOOM") {
-                    anim_enter = R.anim.zoom_in
-                    anim_exit = R.anim.zoom_out
+            fragmentManager.beginTransaction().run {
+                if (anim_res != "NULL") {
+                    if (anim_res == "ZOOM") {
+                        anim_enter = R.anim.zoom_in
+                        anim_exit = R.anim.zoom_out
+                    }
+                    if (anim_res == "SLIDE") {
+                        anim_exit = R.anim.slide_down
+                        anim_enter = R.anim.slide_up
+                    }
+                    setCustomAnimations(anim_enter, anim_exit)
                 }
-                if (anim_res == "SLIDE") {
-                    anim_exit = R.anim.slide_down
-                    anim_enter = R.anim.slide_up
+                replace(id, fragment)
+                val count = fragmentManager.backStackEntryCount
+                Log.e("COUNTED+:", count.toString())
+                if (name == "FRAGMENT_OTHER") {
+                    addToBackStack(name)
                 }
-                fragmentTransaction.setCustomAnimations(anim_enter, anim_exit)
+                commitAllowingStateLoss()
             }
-            fragmentTransaction.replace(id, fragment)
-            val count = fragmentManager.backStackEntryCount
-            Log.e("COUNTED+:", count.toString())
-            if (name == "FRAGMENT_OTHER") {
-                fragmentTransaction.addToBackStack(name)
-            }
-            fragmentTransaction.commit()
         }
     }
 }

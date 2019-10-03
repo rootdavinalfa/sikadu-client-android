@@ -11,8 +11,8 @@ android {
         applicationId "ml.dvnlabs.unsikadu"
         minSdkVersion 22
         targetSdkVersion 28
-        versionCode 1
-        versionName 'sika-01'
+        versionCode 3
+        versionName 'sika-03'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resValue("string", "app_names", "UNSikadu")
     }

@@ -16,6 +16,7 @@ class constant {
         const val scheduleUrl : String = "$baseURL/mahasiswa/schedule/"
         const val gradeSummaryUrl : String = "$baseURL/mahasiswa/grade/summary/"
         const val gradeDetailUrl : String = "$baseURL/mahasiswa/grade/"
+        const val financeDetailUrl : String = "$baseURL/mahasiswa/finance/"
 
     }
 }

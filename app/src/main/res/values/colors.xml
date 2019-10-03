@@ -10,10 +10,12 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="redpink">#F74AB8</color>
+    <color name="redss">#EE5A5A</color>
     <color name="reds">#DD4242</color>
     <color name="red">#990000</color>
     <color name="gren">#04571C</color>
     <color name="yellow">#FFC107</color>
     <color name="green">#388E3C</color>
     <color name="aa">#9575CD</color>
+    <color name="overWhite">#DDDDDD</color>
 </resources>

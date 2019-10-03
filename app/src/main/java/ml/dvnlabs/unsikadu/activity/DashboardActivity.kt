@@ -33,6 +33,7 @@ import ml.dvnlabs.unsikadu.model.StudentInfo
 import ml.dvnlabs.unsikadu.util.database.CreateProfileDBHelper
 import ml.dvnlabs.unsikadu.util.database.model.ProfileList
 import ml.dvnlabs.unsikadu.util.network.APINetworkRequest
+import ml.dvnlabs.unsikadu.util.network.RequestQueueVolley
 import ml.dvnlabs.unsikadu.util.network.listener.FetchDataListener
 import org.json.JSONException
 import org.json.JSONObject
@@ -69,16 +70,20 @@ class DashboardActivity : AppCompatActivity(){
         }
     }
 
+    override fun onStop() {
+        RequestQueueVolley.getInstance(this).stopAllRequest()
+        super.onStop()
+    }
+
     override fun onResume() {
         super.onResume()
         bottomNav!!.selectedItemId = indexMenu
     }
 
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
-        super.onSaveInstanceState(outState, outPersistentState)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
         indexMenu = bottomNav!!.selectedItemId
     }
-
     private fun bottomNavLogic() {
         bottomNav!!.setOnNavigationItemSelectedListener { item: MenuItem ->
             when(item.itemId){
@@ -241,6 +246,8 @@ class DashboardActivity : AppCompatActivity(){
                 bottomNav!!.menu.getItem(0).isChecked = true
                 closeGradeFragment()
                 closeScheduleFragment()
+                closeEngineerFragment()
+                closeFinanceFragment()
                 openInfoFragment()
             }
         }else{

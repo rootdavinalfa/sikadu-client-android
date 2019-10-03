@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+  ~ Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
+  ~ UnSikadu source code for Android (tm) ,
+  ~ Internal License Only,NOT FOR REDISTRIBUTE
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval" >
+    <corners android:radius="10dip" />
+    <gradient
+        android:startColor="@color/primaryDarkColor"
+        android:centerColor="@color/primaryColor"
+        android:endColor="@color/secondaryColor"
+        android:angle="270" />
+</shape>

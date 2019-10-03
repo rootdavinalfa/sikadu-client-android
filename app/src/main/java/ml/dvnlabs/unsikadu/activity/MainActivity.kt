@@ -27,6 +27,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
 import com.wang.avi.AVLoadingIndicatorView
 import ml.dvnlabs.unsikadu.fragment.changeProfileSheet
@@ -54,9 +55,9 @@ class MainActivity : AppCompatActivity(){
     var inputPassword : TextInputEditText? = null
 
     //Layout
-    var createContainer : RelativeLayout? = null
-    var selectContainer : LinearLayout? = null
-    var profileSelect : RelativeLayout? = null
+    var createContainer : MaterialCardView? = null
+    var selectContainer : MaterialCardView? = null
+    var profileSelect : LinearLayout? = null
     var profileCreatorContainer : FrameLayout? = null
 
     var dbHelper : CreateProfileDBHelper? = null
@@ -92,15 +93,15 @@ class MainActivity : AppCompatActivity(){
         }
     }
     private fun initialize(){
-        header = findViewById(R.id.profileHeader)
-        nameProfile = findViewById(R.id.profileName)
-        idProfile = findViewById(R.id.profileId)
-        changeProfile = findViewById(R.id.profileChangeButton)
-        profileBack = findViewById(R.id.profileBack)
-        profileImage = findViewById(R.id.profileImage)
-        createContainer = findViewById(R.id.profileCreateContainer)
-        selectContainer = findViewById(R.id.profileSelectContainer)
-        profileSelect = findViewById(R.id.profileSelectCurrent)
+        this.header = findViewById(R.id.profileHeaderText)
+        this.nameProfile = findViewById(R.id.profileName)
+        this.idProfile = findViewById(R.id.profileId)
+        this.changeProfile = findViewById(R.id.profileChangeButton)
+        this.profileBack = findViewById(R.id.profileBack)
+        this.profileImage = findViewById(R.id.profileImage)
+        this.createContainer = findViewById(R.id.profileCreateContainer)
+        this.selectContainer = findViewById(R.id.profileSelectContainer)
+        this.profileSelect = findViewById(R.id.profileSelectCurrent)
         privacyProfile = findViewById(R.id.profilePrivacy)
         profileCreatorContainer = findViewById(R.id.profileCreator)
         profileCreateButton = findViewById(R.id.profileCreateButton)

@@ -11,9 +11,11 @@ package ml.dvnlabs.unsikadu.view.list
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -32,6 +34,7 @@ class ProfileListHolder(context: Context?, view: View,adapter: ProfileListAdapte
     var profileImg : ImageView? = view.findViewById(R.id.profileImage)
     var profileDelete : ImageView? = view.findViewById(R.id.profileDelete)
     var profileContainer : CardView? = view.findViewById(R.id.rvProfilelistContainer)
+    var profileSelectCurrent : RelativeLayout = view.findViewById(R.id.profileSelectCurrent)
 
     var adapters = adapter
     var models : ProfileList? = null
@@ -66,7 +69,7 @@ class ProfileListHolder(context: Context?, view: View,adapter: ProfileListAdapte
         userName!!.text = model.studentName
         idUser!!.text = model.studentId
         if (model.Selected == 1){
-            profileContainer!!.setBackgroundColor(mcontext!!.resources.getColor(R.color.secondaryDarkColor))
+            profileSelectCurrent.background = mcontext!!.resources.getDrawable(R.drawable.gradient_bg_round)
             userName!!.setTextColor(mcontext!!.resources.getColor(R.color.primaryTextColor))
             idUser!!.setTextColor(mcontext!!.resources.getColor(R.color.primaryTextColor))
         }

@@ -125,12 +125,18 @@ class dashboardSchedule : Fragment(){
                 val totime = times.getString("ToTime")
                 listSchedule.add(ScheduleDetail(courn,clas,room,lecture,day,smter,fromtime,totime))
             }
+
+            //Sorting by fromTime Ascending 18 -> 20
+            fun sortScheduleSelector( d : ScheduleDetail) : String = d.fromTime
+            listSchedule.sortBy {
+                sortScheduleSelector(it)
+            }
+
             val data : ml.dvnlabs.unsikadu.view.tableview.schedule.model.ScheduleData = ml.dvnlabs.unsikadu.view.tableview.schedule.model.ScheduleData(listSchedule)
             val adapter = scheduleTableAdapter(context!!)
             scheduleView!!.adapter = adapter
             adapter.setAllItems(data.columnHeader,data.rowHeader,data.cell)
             scheduleView!!.sortColumn(4,SortState.DESCENDING)
-            scheduleView!!.sortColumn(6,SortState.ASCENDING)
 
         }catch (e : JSONException){
             e.printStackTrace()
