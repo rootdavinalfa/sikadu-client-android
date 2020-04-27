@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/profileCreator"
@@ -54,8 +54,7 @@
             android:text="Welcome!"
             android:textColor="@color/primaryDarkColor"
             android:textSize="36sp"
-            android:typeface="normal"
-             />
+            android:typeface="normal" />
     </RelativeLayout>
 
     <com.google.android.material.card.MaterialCardView

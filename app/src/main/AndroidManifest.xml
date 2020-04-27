@@ -18,14 +18,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="ml.dvnlabs.unsikadu.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.DashboardActivity">
+        <activity android:name="ml.dvnlabs.unsikadu.ui.activity.DashboardActivity">
 
         </activity>
     </application>
