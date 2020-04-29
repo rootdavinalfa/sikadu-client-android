@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+  ~ Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
+  ~ UnSikadu source code for Android (tm) ,
+  ~ Internal License Only,NOT FOR REDISTRIBUTE
+  -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -7,7 +14,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:padding="5dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:hint="User"
         app:endIconMode="clear_text"
@@ -15,10 +21,12 @@
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/profileUserText"
+            android:autofillHints="username"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:maxLength="10"
             android:textSize="18sp"
+            android:textColor="@color/secondaryTextColor"
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -33,15 +41,17 @@
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/profilePasswordText"
+            android:autofillHints="password"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:textSize="18sp"
+            android:textColor="@color/secondaryTextColor"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/profileCreateButton"
+        android:id="@+id/profileCreate"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"

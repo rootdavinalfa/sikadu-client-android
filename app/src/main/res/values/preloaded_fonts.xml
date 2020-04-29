@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+  ~ Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
+  ~ UnSikadu source code for Android (tm) ,
+  ~ Internal License Only,NOT FOR REDISTRIBUTE
+  -->
+
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/maven_pro</item>
+    </array>
+</resources>

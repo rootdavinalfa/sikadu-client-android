@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+ * Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
  * Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
  * UnSikadu source code for Android (tm) ,
  * Internal License Only,NOT FOR REDISTRIBUTE
@@ -200,6 +200,17 @@ class CreateProfileDBHelper(context : Context) : SQLiteOpenHelper(context, DATAB
         try {
             val db : SQLiteDatabase = this.readableDatabase
             db.delete(TABLE_NAME,"$COLUMN_ID = $id",null)
+            db.close()
+
+        }catch (e : SQLiteException){
+            e.printStackTrace()
+        }
+    }
+
+    fun deleteAllProfile(){
+        try {
+            val db : SQLiteDatabase = this.readableDatabase
+            db.delete(TABLE_NAME,null,null)
             db.close()
 
         }catch (e : SQLiteException){

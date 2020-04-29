@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+ * Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
  * Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
  * UnSikadu source code for Android (tm) ,
  * Internal License Only,NOT FOR REDISTRIBUTE
@@ -65,7 +65,7 @@ class changeProfileSheet() : BottomSheetDialogFragment(){
             listProfile = findViewById(R.id.sheetProfileList)
             inputUser = findViewById(R.id.profileUserText)
             inputPassword = findViewById(R.id.profilePasswordText)
-            profileCreateButton = findViewById(R.id.profileCreateButton)
+            profileCreateButton = findViewById(R.id.profileCreate)
         }
         bindProgressButton(profileCreateButton!!)
         clickBehavior()
@@ -73,11 +73,11 @@ class changeProfileSheet() : BottomSheetDialogFragment(){
         return view
     }
     private fun clickBehavior(){
-        createButton!!.setOnClickListener(View.OnClickListener {
+        createButton!!.setOnClickListener {
             expandCreate!!.toggle()
             expandList!!.toggle()
-        })
-        profileCreateButton!!.setOnClickListener(View.OnClickListener {
+        }
+        profileCreateButton!!.setOnClickListener {
             profileCreateButton!!.showProgress{
                 buttonText = "Adding..."
                 progressColor = Color.WHITE
@@ -87,7 +87,7 @@ class changeProfileSheet() : BottomSheetDialogFragment(){
             if (user!="" && pass != ""){
                 AddProfile().execute(user,pass)
             }
-        })
+        }
     }
 
     override fun onDismiss(dialog: DialogInterface) {

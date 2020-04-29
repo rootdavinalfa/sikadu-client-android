@@ -1,240 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+  ~ Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
+  ~ UnSikadu source code for Android (tm) ,
+  ~ Internal License Only,NOT FOR REDISTRIBUTE
+  -->
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/profileCreator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        android:layout_marginTop="36dp"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileHeader"
-        app:layout_constraintVertical_bias="0.041">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <include layout="@layout/frame_create_profile" />
     </FrameLayout>
-    <RelativeLayout
-        android:id="@+id/profileHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.262"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.206"
-        >
-        <ImageView
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/profileBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:padding="2dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:rotation="90"
-            app:srcCompat="@drawable/ic_drop_arrow" />
-        <TextView
-            android:layout_toEndOf="@+id/profileBack"
-            android:id="@+id/profileHeaderText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Welcome!"
-            android:textColor="@color/primaryDarkColor"
-            android:textSize="36sp"
-            android:typeface="normal" />
-    </RelativeLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_margin="40dp"
-        app:cardElevation="5dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileHeader"
-        app:layout_constraintVertical_bias="0.041"
-        android:id="@+id/profileSelectContainer"
-        app:cardPreventCornerOverlap="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/profileSelectCurrent"
-            android:foreground="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/gradient_bg_round"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <RelativeLayout
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                >
-                <ImageView
-                    android:id="@+id/profileImage"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/ic_launcher" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/profileImage"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/profileName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:fontFamily="sans-serif-medium"
-                        android:maxLines="2"
-                        android:text="Albert von khosasdsadsad"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="26sp"
-                        android:textStyle="bold"
-                        android:typeface="normal" />
-
-                    <TextView
-                        android:id="@+id/profileId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1101171089"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="22sp"
-                        android:typeface="normal" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/profileChangeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:text="Change Profile"
-                android:background="@drawable/ellipse_bg"
-                android:backgroundTint="@color/green"
-                android:padding="5dp"
-                android:textColor="@color/primaryTextColor"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="147dp"
-                tools:layout_editor_absoluteY="353dp" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/profileCreateContainer"
-        android:layout_width="330dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="25dp"
-        android:background="?attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/overWhite"
-        android:clickable="true"
-        android:focusable="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileHeader"
-        app:layout_constraintVertical_bias="0.041"
-        app:cardElevation="5dp"
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-
-            <ImageView
-                android:id="@+id/profileAdd"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerVertical="true"
-                android:layout_margin="10dp"
-                android:padding="20dp"
-                android:src="@drawable/ic_add" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="23dp"
-                android:layout_toEndOf="@+id/profileAdd"
-                android:fontFamily="sans-serif-light"
-                android:text="Add Profile"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:typeface="normal" />
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:id="@+id/profilePrivacy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:text="Privacy and TOS"
-        android:textAlignment="center"
-        android:textColor="@color/secondaryTextColor"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.969" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(c) 2019 , Davin Alfariazky Putra Basudewa\nSikadu Mobile"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="136dp"
+        android:fontFamily="@font/francois_one"
+        android:text="@string/app_name"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp"
+        android:text="(c) 2019-2020 , Davin Alfariazky Putra Basudewa\nSikadu Mobile"
         android:textAlignment="center"
         android:textColor="@color/secondaryTextColor"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileSelectContainer"
-        app:layout_constraintVertical_bias="0.847" />
-
-
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginBottom="1dp"
-        android:background="@drawable/gradient_bg"
-        app:layout_constraintBottom_toTopOf="@+id/profileSelectContainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileHeader" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

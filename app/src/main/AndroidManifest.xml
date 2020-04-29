@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+  ~ Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
+  ~ UnSikadu source code for Android (tm) ,
+  ~ Internal License Only,NOT FOR REDISTRIBUTE
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="ml.dvnlabs.unsikadu">
@@ -28,6 +35,10 @@
         <activity android:name="ml.dvnlabs.unsikadu.ui.activity.DashboardActivity">
 
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
