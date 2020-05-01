@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+ * Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
  * Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
  * UnSikadu source code for Android (tm) ,
  * Internal License Only,NOT FOR REDISTRIBUTE
@@ -33,7 +33,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class dashboardSchedule : Fragment(){
+class DashboardSchedule : Fragment(){
 
     var selectYear : MaterialSpinner? = null
     var selectContainer : LinearLayout? = null
@@ -66,7 +66,7 @@ class dashboardSchedule : Fragment(){
         loadingContainer!!.visibility = View.VISIBLE
         scheduleView!!.visibility = View.GONE
 
-        val prefs : SharedPreferences = context!!.getSharedPreferences("session",Context.MODE_PRIVATE)
+        val prefs : SharedPreferences = requireContext().getSharedPreferences("session",Context.MODE_PRIVATE)
         token = prefs.getString("token",null)
         if (token!!.isNotEmpty()){
             getYearList()
@@ -75,11 +75,11 @@ class dashboardSchedule : Fragment(){
 
 
     private fun getYearList(){
-        APINetworkRequest(activity!!,getAcademicYear,constant.scheduleUrl+token,APINetworkRequest.CODE_GET_REQUEST,null)
+        APINetworkRequest(requireActivity(),getAcademicYear,constant.scheduleUrl+token,APINetworkRequest.CODE_GET_REQUEST,null)
     }
 
     private fun getScheduleDetail(year : String,quart : String){
-        APINetworkRequest(activity!!,getScheduleDetail,constant.scheduleUrl+"$year/$quart/"+token,APINetworkRequest.CODE_GET_REQUEST,null)
+        APINetworkRequest(requireActivity(),getScheduleDetail,constant.scheduleUrl+"$year/$quart/"+token,APINetworkRequest.CODE_GET_REQUEST,null)
     }
 
     private fun parseSchedule(sch : JSONArray){
@@ -134,7 +134,7 @@ class dashboardSchedule : Fragment(){
 
             val data: ml.dvnlabs.unsikadu.ui.view.tableview.schedule.model.ScheduleData =
                 ml.dvnlabs.unsikadu.ui.view.tableview.schedule.model.ScheduleData(listSchedule)
-            val adapter = scheduleTableAdapter(context!!)
+            val adapter = scheduleTableAdapter(requireContext())
             scheduleView!!.adapter = adapter
             adapter.setAllItems(data.columnHeader,data.rowHeader,data.cell)
             scheduleView!!.sortColumn(4,SortState.DESCENDING)

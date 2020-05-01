@@ -22,11 +22,21 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
     }
 
-    protected open fun setupFragment(fragment: Fragment?, layout: Int) {
+    protected open fun setupFragment(
+        fragment: Fragment?,
+        layout: Int,
+        tags: String,
+        bundle: Bundle?
+    ) {
+        bundle?.let {
+            fragment!!.arguments = bundle
+        }
+
         supportFragmentManager
             .beginTransaction()
-            .replace(layout, fragment!!)
+            .replace(layout, fragment!!, tags)
             .commit()
+
     }
 
     protected open fun stackedFragment(fragment: Fragment?, layout: Int, tags: String) {

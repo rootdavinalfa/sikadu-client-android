@@ -30,18 +30,16 @@
             android:id="@+id/dashboardFrame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout="@layout/frame_infostudent"
             android:layout_above="@+id/dashBottomNavi"
             >
         </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/dashBottomNavi"
-            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/primaryColor"
+            android:background="@color/white"
             app:menu="@menu/bottomnav"
             app:labelVisibilityMode="labeled"
 

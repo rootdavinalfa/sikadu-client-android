@@ -18,6 +18,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wang.avi.AVLoadingIndicatorView
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +28,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ml.dvnlabs.unsikadu.R
 import ml.dvnlabs.unsikadu.base.BaseActivity
+import ml.dvnlabs.unsikadu.base.BaseViewModel
 import ml.dvnlabs.unsikadu.constant.constant
 import ml.dvnlabs.unsikadu.model.StudentInfo
 import ml.dvnlabs.unsikadu.ui.fragment.*
@@ -33,11 +36,15 @@ import ml.dvnlabs.unsikadu.util.database.CreateProfileDBHelper
 import ml.dvnlabs.unsikadu.util.network.APINetworkRequest
 import ml.dvnlabs.unsikadu.util.network.RequestQueueVolley
 import ml.dvnlabs.unsikadu.util.network.listener.FetchDataListener
+import ml.dvnlabs.unsikadu.viewmodel.StudentsViewModel
 import org.json.JSONException
 import org.json.JSONObject
 
 
 class DashboardActivity : BaseActivity() {
+    private lateinit var studenVM: StudentsViewModel
+    private lateinit var baseVM: BaseViewModel
+
     var loading: AVLoadingIndicatorView? = null
     var dashContainer: RelativeLayout? = null
     var bottomNav: BottomNavigationView? = null
@@ -49,13 +56,12 @@ class DashboardActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        changeStatusBar(this, R.color.white, true)
         setContentView(R.layout.activity_dashboard)
         dbHelper = CreateProfileDBHelper(this)
-
         loading = findViewById(R.id.dashboardLoading)
         dashContainer = findViewById(R.id.mainDashboardContainer)
         bottomNav = findViewById(R.id.dashBottomNavi)
-
         if (!intent!!.extras!!.isEmpty) {
             val uid = intent.extras!!.getString("studentID")
             val pass = intent.extras!!.getString("password")
@@ -89,26 +95,50 @@ class DashboardActivity : BaseActivity() {
     }
 
     private fun bottomNavLogic() {
+        baseVM = ViewModelProvider(this).get(BaseViewModel::class.java)
+        baseVM.selectedItem.observe(this, Observer {
+            bottomNav!!.selectedItemId = it
+        })
         bottomNav!!.setOnNavigationItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.bottomMenuInfo -> {
-                    setupFragment(dashboardInfo(), R.id.dashboardFrame)
+                    setupFragment(
+                        DashboardOverview(),
+                        R.id.dashboardFrame,
+                        DashboardOverview().tag.toString(), null
+                    )
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bottomMenuSchedule -> {
-                    setupFragment(dashboardSchedule(), R.id.dashboardFrame)
+                    setupFragment(
+                        DashboardSchedule(),
+                        R.id.dashboardFrame,
+                        DashboardSchedule().tag.toString(), null
+                    )
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bottomMenuGrade -> {
-                    setupFragment(dashboardGrade(), R.id.dashboardFrame)
+                    setupFragment(
+                        DashboardGrade(),
+                        R.id.dashboardFrame,
+                        DashboardGrade().tag.toString(), null
+                    )
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bottomMenuFinance -> {
-                    setupFragment(dashboardFinance(), R.id.dashboardFrame)
+                    setupFragment(
+                        DashboardFinance(),
+                        R.id.dashboardFrame,
+                        DashboardFinance().tag.toString(), null
+                    )
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bottomMenuEngineer -> {
-                    setupFragment(dashboardEngineer(), R.id.dashboardFrame)
+                    setupFragment(
+                        DashboardEngineer(),
+                        R.id.dashboardFrame,
+                        DashboardEngineer().tag.toString(), null
+                    )
                     return@setOnNavigationItemSelectedListener true
                 }
             }
@@ -145,8 +175,8 @@ class DashboardActivity : BaseActivity() {
         elErrorDialog.show()
     }
 
-    private suspend fun deleteProfile(){
-        withContext(Dispatchers.IO){
+    private suspend fun deleteProfile() {
+        withContext(Dispatchers.IO) {
             dbHelper!!.deleteAllProfile()
         }
     }
@@ -181,7 +211,11 @@ class DashboardActivity : BaseActivity() {
                 elErrorDialog.show()
             } else {
                 bottomNav!!.menu.getItem(0).isChecked = true
-                setupFragment(dashboardInfo(), R.id.dashboardFrame)
+                setupFragment(
+                    DashboardOverview(),
+                    R.id.dashboardFrame,
+                    DashboardOverview().tag.toString(), null
+                )
             }
         } else {
             super.onBackPressed()
@@ -254,7 +288,16 @@ class DashboardActivity : BaseActivity() {
                         group,
                         status
                     )
-                    setupFragment(dashboardInfo(), R.id.dashboardFrame)
+                    studenVM =
+                        ViewModelProvider(this@DashboardActivity).get(StudentsViewModel::class.java)
+                    studenVM.students = studentInfo
+
+                    setupFragment(
+                        DashboardOverview(),
+                        R.id.dashboardFrame,
+                        DashboardOverview().tag.toString()
+                        , null
+                    )
                     bottomNav!!.menu.getItem(0).isChecked = true
                     GlobalScope.launch {
                         updateProfileInfo(studentID, name, imgURL)
@@ -288,4 +331,5 @@ class DashboardActivity : BaseActivity() {
             }
         }
     }
+
 }

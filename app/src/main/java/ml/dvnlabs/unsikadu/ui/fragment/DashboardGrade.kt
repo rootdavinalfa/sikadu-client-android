@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+ * Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
  * Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
  * UnSikadu source code for Android (tm) ,
  * Internal License Only,NOT FOR REDISTRIBUTE
@@ -40,7 +40,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 
-class dashboardGrade : Fragment(){
+class DashboardGrade : Fragment(){
     var loading : RelativeLayout? = null
     var containerLay : LinearLayout? = null
     var semesterList : RecyclerView? = null
@@ -70,7 +70,7 @@ class dashboardGrade : Fragment(){
             expandButton = findViewById(R.id.gradeShowPerformance)
             expandPerformance = findViewById(R.id.gradeExpandPerformance)
         }
-        val prefs : SharedPreferences = context!!.getSharedPreferences("session", Context.MODE_PRIVATE)
+        val prefs : SharedPreferences = requireContext().getSharedPreferences("session", Context.MODE_PRIVATE)
         token = prefs.getString("token",null)
         if (token!!.isNotEmpty()){
             getSemester()
@@ -79,7 +79,7 @@ class dashboardGrade : Fragment(){
     }
 
     private fun getSemester(){
-        APINetworkRequest(activity!!,getSemesterData,constant.gradeSummaryUrl+token,APINetworkRequest.CODE_GET_REQUEST,null)
+        APINetworkRequest(requireActivity(),getSemesterData,constant.gradeSummaryUrl+token,APINetworkRequest.CODE_GET_REQUEST,null)
     }
     private fun parseGradeData(data : JSONArray) = try {
         var sks = 0
@@ -108,8 +108,8 @@ class dashboardGrade : Fragment(){
         chart!!.xAxis.position = XAxis.XAxisPosition.BOTTOM
         chart!!.description.text = ""
         chart!!.legend.isEnabled = true
-        chart!!.xAxis.textColor = context!!.resources.getColor(R.color.primaryTextColor)
-        chart!!.axisLeft.textColor = context!!.resources.getColor(R.color.primaryTextColor)
+        chart!!.xAxis.textColor = requireContext().resources.getColor(R.color.primaryTextColor)
+        chart!!.axisLeft.textColor = requireContext().resources.getColor(R.color.primaryTextColor)
         if (chart!!.data != null && chart!!.data.dataSetCount > 0){
             set = (chart!!.data.getDataSetByIndex(0) as LineDataSet)
             set.values = valuesChart
@@ -121,9 +121,9 @@ class dashboardGrade : Fragment(){
             set.setDrawValues(true)
             set.setDrawCircles(false)
             set.fillAlpha = 255
-            set.valueTextColor = context!!.resources.getColor(R.color.primaryTextColor)
-            set.color = context!!.resources.getColor(R.color.redpink)
-            set.fillColor =context!!.resources.getColor(R.color.redpink)
+            set.valueTextColor = requireContext().resources.getColor(R.color.primaryTextColor)
+            set.color = requireContext().resources.getColor(R.color.redpink)
+            set.fillColor =requireContext().resources.getColor(R.color.redpink)
 
             set.valueTextSize = 9F
             set.mode = LineDataSet.Mode.CUBIC_BEZIER
@@ -139,8 +139,8 @@ class dashboardGrade : Fragment(){
 
         mkText!!.text = "Totak MK: $mk"
         sksText!!.text = "Totak SKS: $sks"
-        val adapter = gradeAsSemesterListAdapter(activity!!,semesterData!!,R.layout.rv_grade_main)
-        val linearLayoutManager = LinearLayoutManager(activity!!)
+        val adapter = gradeAsSemesterListAdapter(requireActivity(),semesterData!!,R.layout.rv_grade_main)
+        val linearLayoutManager = LinearLayoutManager(requireActivity())
         semesterList!!.layoutManager = linearLayoutManager
         semesterList!!.adapter = adapter
 

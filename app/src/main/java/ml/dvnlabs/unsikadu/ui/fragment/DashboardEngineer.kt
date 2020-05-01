@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+ * Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
  * Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
  * UnSikadu source code for Android (tm) ,
  * Internal License Only,NOT FOR REDISTRIBUTE
@@ -14,7 +14,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import ml.dvnlabs.unsikadu.R
-class dashboardEngineer : Fragment() {
+class DashboardEngineer : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view : View = inflater.inflate(R.layout.frame_engineer,container,false)
         return view
