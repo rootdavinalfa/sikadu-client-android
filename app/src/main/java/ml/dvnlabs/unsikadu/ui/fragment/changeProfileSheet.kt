@@ -54,7 +54,7 @@ class changeProfileSheet() : BottomSheetDialogFragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dbHelper = CreateProfileDBHelper(activity!!)
+        dbHelper = CreateProfileDBHelper(requireActivity())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
