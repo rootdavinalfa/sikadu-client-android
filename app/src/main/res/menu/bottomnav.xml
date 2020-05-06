@@ -28,8 +28,8 @@
         android:icon="@drawable/ic_money"
         />
     <item
-        android:id="@+id/bottomMenuEngineer"
-        android:title="Engineering"
+        android:id="@+id/bottomMenuSetting"
+        android:title="Setting"
         android:icon="@drawable/ic_engineering"
         />
 </menu>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (c) 2019. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+  ~ Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
   ~ Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
   ~ UnSikadu source code for Android (tm) ,
   ~ Internal License Only,NOT FOR REDISTRIBUTE
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Financial"
-                android:textColor="@color/primaryDarkColor"
+                android:textColor="@color/secondaryTextColor"
                 />
             <com.google.android.material.card.MaterialCardView
                 android:clickable="true"

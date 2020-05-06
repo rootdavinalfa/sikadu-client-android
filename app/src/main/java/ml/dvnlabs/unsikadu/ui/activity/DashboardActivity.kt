@@ -133,11 +133,11 @@ class DashboardActivity : BaseActivity() {
                     )
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.bottomMenuEngineer -> {
+                R.id.bottomMenuSetting -> {
                     setupFragment(
-                        DashboardEngineer(),
+                        DashboardSetting(),
                         R.id.dashboardFrame,
-                        DashboardEngineer().tag.toString(), null
+                        DashboardSetting().tag.toString(), null
                     )
                     return@setOnNavigationItemSelectedListener true
                 }

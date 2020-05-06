@@ -14,9 +14,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import ml.dvnlabs.unsikadu.R
-class DashboardEngineer : Fragment() {
+class DashboardSetting : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view : View = inflater.inflate(R.layout.frame_engineer,container,false)
+        val view : View = inflater.inflate(R.layout.frame_setting,container,false)
         return view
     }
 }
