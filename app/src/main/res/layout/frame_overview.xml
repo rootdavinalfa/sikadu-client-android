@@ -50,7 +50,7 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textColor="@color/secondaryTextColor"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/overviewProfileIMG"
             app:layout_constraintTop_toBottomOf="@+id/overviewName"

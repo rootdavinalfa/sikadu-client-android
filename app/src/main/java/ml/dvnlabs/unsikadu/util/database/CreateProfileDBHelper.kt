@@ -124,7 +124,7 @@ class CreateProfileDBHelper(context : Context) : SQLiteOpenHelper(context, DATAB
         }
     }
 
-    fun HasProfile() :Boolean{
+    fun hasProfile() :Boolean{
         try {
             val countQuery = "SELECT  * FROM $TABLE_NAME"
             val db: SQLiteDatabase = this.readableDatabase

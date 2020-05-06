@@ -8,26 +8,10 @@
 
 package ml.dvnlabs.unsikadu
 
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.card.MaterialCardView
-import com.google.android.material.textfield.TextInputEditText
-import com.wang.avi.AVLoadingIndicatorView
 import kotlinx.android.synthetic.main.frame_create_profile.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -35,7 +19,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ml.dvnlabs.unsikadu.base.BaseActivity
 import ml.dvnlabs.unsikadu.ui.activity.DashboardActivity
-import ml.dvnlabs.unsikadu.ui.fragment.changeProfileSheet
 import ml.dvnlabs.unsikadu.util.database.CreateProfileDBHelper
 import ml.dvnlabs.unsikadu.util.database.model.ProfileList
 
@@ -55,7 +38,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         changeStatusBar(this,R.color.white,true)
         dbHelper = CreateProfileDBHelper(this)
-        if (dbHelper!!.HasProfile()){
+        if (dbHelper!!.hasProfile()){
             GlobalScope.launch {
                 readSelectedProfile()
             }
@@ -72,7 +55,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun checkHasProfile() {
-        if (dbHelper!!.HasProfile()) {
+        if (dbHelper!!.hasProfile()) {
             GlobalScope.launch {
                 readSelectedProfile()
             }

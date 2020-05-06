@@ -9,7 +9,6 @@
 package ml.dvnlabs.unsikadu.ui.fragment
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +17,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.evrencoskun.tableview.TableView
 import com.evrencoskun.tableview.sort.SortState
@@ -65,8 +63,6 @@ class DashboardSchedule : Fragment() {
             selectContainer = scheduleSelectContainer
             scheduleView = scheduleTableView
             loadingContainer = scheduleLoadingContainer
-            defaultContainer = scheduleDefaultContainer
-            defaultText = scheduleDefaultText
         }
         initial()
         return view
@@ -76,15 +72,6 @@ class DashboardSchedule : Fragment() {
         selectContainer!!.visibility = View.GONE
         loadingContainer!!.visibility = View.VISIBLE
         scheduleView!!.visibility = View.GONE
-
-        defaultContainer!!.setOnClickListener {
-            AlertDialog.Builder(requireActivity())
-                .setTitle("Not Implemented")
-                .setMessage("This function not yet implemented!\nErr: FuncNotImpl -> 0xF1")
-                .setPositiveButton("OK"){ _: DialogInterface?, _: Int ->
-                }
-                .show()
-        }
 
         val prefs: SharedPreferences =
             requireContext().getSharedPreferences("session", Context.MODE_PRIVATE)
