@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+ * Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
  * Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
  * UnSikadu source code for Android (tm) ,
  * Internal License Only,NOT FOR REDISTRIBUTE
@@ -30,7 +30,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.text.DecimalFormat
 
-class dashboardFinance : Fragment() {
+class DashboardFinance : Fragment() {
     private var containers : LinearLayout? = null
     private var  loading : RelativeLayout? = null
 
@@ -57,7 +57,7 @@ class dashboardFinance : Fragment() {
         }
         loading!!.visibility = View.VISIBLE
         containers!!.visibility = View.GONE
-        val prefs : SharedPreferences = context!!.getSharedPreferences("session", Context.MODE_PRIVATE)
+        val prefs : SharedPreferences = requireContext().getSharedPreferences("session", Context.MODE_PRIVATE)
         token = prefs.getString("token",null)
         if (token!!.isNotEmpty()){
             getFinance()
@@ -66,7 +66,7 @@ class dashboardFinance : Fragment() {
     }
 
     private fun getFinance(){
-        APINetworkRequest(activity!!,financeGet,constant.financeDetailUrl+token!!,APINetworkRequest.CODE_GET_REQUEST,null)
+        APINetworkRequest(requireActivity(),financeGet,constant.financeDetailUrl+token!!,APINetworkRequest.CODE_GET_REQUEST,null)
     }
 
     private fun parseFinance(data : JSONObject){
@@ -101,8 +101,8 @@ class dashboardFinance : Fragment() {
             progress!!.progress = percent
 
             //List initialize
-            val layoutManager = LinearLayoutManager(activity!!)
-            val adapter = FinanceAdapter(activity!!,dataFinance!!,R.layout.rv_finance_period)
+            val layoutManager = LinearLayoutManager(requireActivity())
+            val adapter = FinanceAdapter(requireActivity(),dataFinance!!,R.layout.rv_finance_period)
             listFinance!!.layoutManager = layoutManager
             listFinance!!.adapter = adapter
 

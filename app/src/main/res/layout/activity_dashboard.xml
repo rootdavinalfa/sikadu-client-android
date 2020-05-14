@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+  ~ Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
+  ~ UnSikadu source code for Android (tm) ,
+  ~ Internal License Only,NOT FOR REDISTRIBUTE
+  -->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -20,54 +27,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <FrameLayout
-            android:id="@+id/frameFragmentInfo"
+            android:id="@+id/dashboardFrame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout="@layout/frame_infostudent"
-            android:layout_above="@+id/dashBottomNavi"
-            >
-        </FrameLayout>
-        <FrameLayout
-            android:id="@+id/frameFragmentSchedule"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/frame_infostudent"
-            android:layout_above="@+id/dashBottomNavi"
-            >
-        </FrameLayout>
-        <FrameLayout
-            android:id="@+id/frameFragmentGrade"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/frame_gradestudent"
-            android:layout_above="@+id/dashBottomNavi"
-            >
-        </FrameLayout>
-        <FrameLayout
-            android:id="@+id/frameFragmentFinance"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/frame_finance"
-            android:layout_above="@+id/dashBottomNavi"
-            >
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/frameFragmentEngineer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/frame_engineer"
             android:layout_above="@+id/dashBottomNavi"
             >
         </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/dashBottomNavi"
-            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/primaryColor"
+            android:background="@color/white"
             app:menu="@menu/bottomnav"
             app:labelVisibilityMode="labeled"
 

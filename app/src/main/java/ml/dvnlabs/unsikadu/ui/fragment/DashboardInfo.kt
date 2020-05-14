@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+ * Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
  * Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
  * UnSikadu source code for Android (tm) ,
  * Internal License Only,NOT FOR REDISTRIBUTE
@@ -25,7 +25,7 @@ import ml.dvnlabs.unsikadu.R
 import ml.dvnlabs.unsikadu.model.StudentInfo
 import ml.dvnlabs.unsikadu.ui.activity.DashboardActivity
 
-class dashboardInfo() : Fragment(){
+class DashboardInfo() : Fragment(){
     var imageProfile : ImageView? = null
 
     var nameProfile : TextView?= null

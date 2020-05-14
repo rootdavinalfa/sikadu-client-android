@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+  ~ Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
+  ~ UnSikadu source code for Android (tm) ,
+  ~ Internal License Only,NOT FOR REDISTRIBUTE
+  -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -37,7 +44,7 @@
                 android:textAlignment="center"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/secondaryTextColor"
                 />
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -90,7 +97,7 @@
                         android:id="@+id/gradeSKS"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/primaryTextColor"
+                        android:textColor="@color/secondaryTextColor"
                         android:text="Total SKS : 22"
                         android:textSize="24sp"
                         />
@@ -99,7 +106,7 @@
                         android:layout_gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/primaryTextColor"
+                        android:textColor="@color/secondaryTextColor"
                         android:text="Total MK : 22"
                         android:textSize="16sp"
                         />

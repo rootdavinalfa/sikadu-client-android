@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+  ~ Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
+  ~ UnSikadu source code for Android (tm) ,
+  ~ Internal License Only,NOT FOR REDISTRIBUTE
+  -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -6,7 +13,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
-        android:background="@drawable/gradient_bg"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -16,7 +23,8 @@
             android:textSize="28sp"
             android:textAlignment="center"
             android:text="Jadwal Perkuliahan"
-            android:textColor="@color/primaryTextColor"
+            android:textColor="@color/secondaryTextColor"
+            android:fontFamily="@font/francois_one"
             />
         <LinearLayout
             android:id="@+id/scheduleSelectContainer"
@@ -61,17 +69,9 @@
                 android:id="@+id/scheduleSelectYear"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:ms_text_color="@color/primaryDarkColor"
+                app:ms_background_color="@color/primaryDarkColor"
+                app:ms_text_color="@color/primaryTextColor"
                 app:ms_hint_color="@color/secondaryTextColor"
-                />
-            <TextView
-                android:id="@+id/scheduleAttended"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/primaryTextColor"
-                android:textSize="18sp"
-                android:text="Semester Yang Sudah dilalui : 4"
                 />
         </LinearLayout>
     </LinearLayout>

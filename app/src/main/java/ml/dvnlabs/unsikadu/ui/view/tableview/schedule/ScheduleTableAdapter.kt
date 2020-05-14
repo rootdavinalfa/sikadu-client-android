@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. dvnlabs.ml , Davin Alfarizky Putra Basudewa
+ * Copyright (c) 2020. dvnlabs.ml , Davin Alfarizky Putra Basudewa
  * Email : dbasudewa@gmail.com / moshi2_davin@dvnlabs.ml
  * UnSikadu source code for Android (tm) ,
  * Internal License Only,NOT FOR REDISTRIBUTE
@@ -24,39 +24,39 @@ import ml.dvnlabs.unsikadu.ui.view.tableview.schedule.model.RowHeader
 
 
 //ColumnHeader
-class scheduleColumnHead(itemView: View) : AbstractViewHolder(itemView){
+class ScheduleColumnHead(itemView: View) : AbstractViewHolder(itemView){
     var columnText : TextView = itemView.findViewById(R.id.mColumnText)
     var columnContainer : LinearLayout = itemView.findViewById(R.id.mColumnContainer)
 }
 
 //Row header
-class scheduleRowHead(itemView: View) : AbstractViewHolder(itemView){
+class ScheduleRowHead(itemView: View) : AbstractViewHolder(itemView){
     var rowText : TextView = itemView.findViewById(R.id.mRowText)
 }
 
 //Cell
-class scheduleCell(itemView: View): AbstractViewHolder(itemView){
+class ScheduleCell(itemView: View): AbstractViewHolder(itemView){
     var cellText : TextView = itemView.findViewById(R.id.mCellText)
     var cellContainer : LinearLayout = itemView.findViewById(R.id.mCellContainer)
 }
 
 
-class scheduleTableAdapter(context: Context) : AbstractTableAdapter<ColumnHeader, RowHeader, Cell>(
+class ScheduleTableAdapter(context: Context) : AbstractTableAdapter<ColumnHeader, RowHeader, Cell>(
     context
 ) {
     override fun onCreateColumnHeaderViewHolder(parent: ViewGroup?, viewType: Int): AbstractViewHolder {
         val layout = LayoutInflater.from(mContext).inflate(R.layout.m_column_layout,parent,false)
-        return scheduleColumnHead(layout)
+        return ScheduleColumnHead(layout)
     }
 
     override fun onCreateRowHeaderViewHolder(parent: ViewGroup?, viewType: Int): AbstractViewHolder {
         val layout = LayoutInflater.from(mContext).inflate(R.layout.m_row_layout,parent,false)
-        return scheduleRowHead(layout)
+        return ScheduleRowHead(layout)
     }
 
     override fun onCreateCellViewHolder(parent: ViewGroup?, viewType: Int): AbstractViewHolder {
         val layout = LayoutInflater.from(mContext).inflate(R.layout.m_cell_layout,parent,false)
-        return scheduleCell(layout)
+        return ScheduleCell(layout)
     }
 
     @SuppressLint("InflateParams")
@@ -80,7 +80,7 @@ class scheduleTableAdapter(context: Context) : AbstractTableAdapter<ColumnHeader
         val columnHeader =
             columnHeaderItemModel as ColumnHeader
 
-        val columnHeaderViewHolder: scheduleColumnHead = holder as scheduleColumnHead
+        val columnHeaderViewHolder: ScheduleColumnHead = holder as ScheduleColumnHead
         columnHeaderViewHolder.columnText.text= columnHeader.data.toString()
 
         columnHeaderViewHolder.columnContainer.layoutParams.width = LinearLayout
@@ -93,7 +93,7 @@ class scheduleTableAdapter(context: Context) : AbstractTableAdapter<ColumnHeader
         val rowHeader =
             rowHeaderItemModel as RowHeader
 
-        val rowHeaderViewHolder: scheduleRowHead = holder as scheduleRowHead
+        val rowHeaderViewHolder: ScheduleRowHead = holder as ScheduleRowHead
         rowHeaderViewHolder.rowText.text= rowHeader.data.toString()
     }
 
@@ -104,7 +104,7 @@ class scheduleTableAdapter(context: Context) : AbstractTableAdapter<ColumnHeader
         rowPosition: Int
     ) {
         val cell: Cell = cellItemModel as Cell
-        val viewHolder : scheduleCell = holder as scheduleCell
+        val viewHolder : ScheduleCell = holder as ScheduleCell
         viewHolder.cellText.text = cell.data.toString()
         viewHolder.itemView.layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT;
         viewHolder.cellText.requestLayout();
