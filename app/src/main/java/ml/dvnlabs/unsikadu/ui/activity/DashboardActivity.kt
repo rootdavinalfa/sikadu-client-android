@@ -20,6 +20,7 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wang.avi.AVLoadingIndicatorView
 import kotlinx.coroutines.Dispatchers
@@ -30,21 +31,21 @@ import ml.dvnlabs.unsikadu.MainActivity
 import ml.dvnlabs.unsikadu.R
 import ml.dvnlabs.unsikadu.base.BaseActivity
 import ml.dvnlabs.unsikadu.base.BaseViewModel
-import ml.dvnlabs.unsikadu.constant.constant
 import ml.dvnlabs.unsikadu.model.StudentInfo
 import ml.dvnlabs.unsikadu.ui.fragment.*
 import ml.dvnlabs.unsikadu.util.database.CreateProfileDBHelper
-import ml.dvnlabs.unsikadu.util.network.APINetworkRequest
+import ml.dvnlabs.unsikadu.util.datasource.DataSourceSelector
+import ml.dvnlabs.unsikadu.util.datasource.remote.RemoteCallback
+import ml.dvnlabs.unsikadu.util.datasource.remote.model.LoginResponse
+import ml.dvnlabs.unsikadu.util.datasource.remote.model.StudentInfoResponse
 import ml.dvnlabs.unsikadu.util.network.RequestQueueVolley
-import ml.dvnlabs.unsikadu.util.network.listener.FetchDataListener
 import ml.dvnlabs.unsikadu.viewmodel.StudentsViewModel
-import org.json.JSONException
-import org.json.JSONObject
 
 
 class DashboardActivity : BaseActivity() {
     private lateinit var studenVM: StudentsViewModel
     private lateinit var baseVM: BaseViewModel
+    private lateinit var dataSourceSelector: DataSourceSelector
 
     var loading: AVLoadingIndicatorView? = null
     var dashContainer: RelativeLayout? = null
@@ -59,6 +60,7 @@ class DashboardActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         changeStatusBar(this, R.color.white, true)
         setContentView(R.layout.activity_dashboard)
+        dataSourceSelector = DataSourceSelector(this)
         dbHelper = CreateProfileDBHelper(this)
         loading = findViewById(R.id.dashboardLoading)
         dashContainer = findViewById(R.id.mainDashboardContainer)
@@ -66,18 +68,34 @@ class DashboardActivity : BaseActivity() {
         if (!intent!!.extras!!.isEmpty) {
             val uid = intent.extras!!.getString("studentID")
             val pass = intent.extras!!.getString("password")
-            val param = HashMap<String, String>()
-            param["user"] = uid!!
-            param["password"] = pass!!
-            APINetworkRequest(
-                this,
-                loginAction,
-                constant.loginUrl,
-                APINetworkRequest.CODE_POST_REQUEST,
-                param
-            )
+            if (!uid.isNullOrEmpty() && !pass.isNullOrEmpty()) {
+                login(uid, pass)
+            }
             bottomNavLogic()
         }
+    }
+
+    private fun login(uid: String, pass: String) {
+        dataSourceSelector.remoteLogin(
+            uid, pass, object : RemoteCallback<LoginResponse> {
+                override fun onSuccess(data: LoginResponse) {
+                    readInfo(data.token)
+                }
+
+                override fun onFailed(errorMessage: String?) {
+                    Log.e("ERROR: ", errorMessage)
+                }
+
+                override fun onShowProgress() {
+                    loading!!.visibility = View.VISIBLE
+                    dashContainer!!.visibility = View.GONE
+                }
+
+                override fun onHideProgress() {
+                }
+            }
+        )
+
     }
 
     override fun onStop() {
@@ -152,13 +170,74 @@ class DashboardActivity : BaseActivity() {
             getSharedPreferences("session", Context.MODE_PRIVATE).edit()
         tokenPut.putString("token", token)
         tokenPut.apply()
-        APINetworkRequest(
-            this,
-            readInfoListener,
-            constant.infoUrl + token,
-            APINetworkRequest.CODE_GET_REQUEST,
-            null
-        )
+        dataSourceSelector.remoteGetStudentInfo(token,
+            object : RemoteCallback<StudentInfoResponse> {
+                override fun onSuccess(data: StudentInfoResponse) {
+                    loading!!.visibility = View.GONE
+                    dashContainer!!.visibility = View.VISIBLE
+                    val info = data.info
+                    val studentID = info.npm
+                    val name = info.name
+                    val bornPlace = info.placeBorn
+                    val bornDate = info.bornDate
+                    val gender = info.gender
+                    val religion = info.religion
+                    val phone = info.phone
+                    val email = info.email
+                    val address = info.address
+                    val imgURL = info.pictureUrl
+                    val faculty = info.college.faculty
+                    val branch = info.college.major
+                    val degree = info.college.degree
+                    val clas = info.college.clas
+                    val group = info.college.group
+                    val status = info.college.status
+                    studentInfo = StudentInfo(
+                        studentID,
+                        name,
+                        bornPlace,
+                        bornDate,
+                        gender,
+                        religion,
+                        phone,
+                        email,
+                        address,
+                        imgURL,
+                        faculty,
+                        branch,
+                        degree,
+                        clas,
+                        group,
+                        status
+                    )
+                    studenVM =
+                        ViewModelProvider(this@DashboardActivity).get(StudentsViewModel::class.java)
+                    studenVM.students = studentInfo
+
+                    setupFragment(
+                        DashboardOverview(),
+                        R.id.dashboardFrame,
+                        DashboardOverview().tag.toString(), null
+                    )
+                    bottomNav!!.menu.getItem(0).isChecked = true
+                    lifecycleScope.launch {
+                        updateProfileInfo(studentID, name, imgURL)
+                    }
+                }
+
+                override fun onFailed(errorMessage: String?) {
+                    loading!!.visibility = View.GONE
+                    dashContainer!!.visibility = View.GONE
+                    notAuthorizedAlert()
+                }
+
+                override fun onShowProgress() {
+                }
+
+                override fun onHideProgress() {
+                    loading!!.visibility = View.GONE
+                }
+            })
     }
 
     fun notAuthorizedAlert() {
@@ -170,7 +249,7 @@ class DashboardActivity : BaseActivity() {
             .setCancelable(false)
             .setMessage("Profile yang anda masukkan tidak memiliki akses\nPastikan user dan password yang dimasukkan benar!")
             .setPositiveButton("Kembali ke login") { _: DialogInterface?, _: Int ->
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }
@@ -222,104 +301,6 @@ class DashboardActivity : BaseActivity() {
             }
         } else {
             super.onBackPressed()
-        }
-    }
-
-    var loginAction: FetchDataListener = object : FetchDataListener {
-        override fun onFetchFailure(msg: String?) {
-            Log.e("ERROR: ", msg)
-        }
-
-        override fun onFetchStart() {
-            loading!!.visibility = View.VISIBLE
-            dashContainer!!.visibility = View.GONE
-        }
-
-        override fun onFetchComplete(data: String?) {
-            try {
-                val loginData = JSONObject(data)
-                if (!loginData.getBoolean("Error")) {
-                    readInfo(loginData.getString("Token"))
-                }
-
-            } catch (e: JSONException) {
-                e.printStackTrace()
-            }
-        }
-    }
-    var readInfoListener: FetchDataListener = object : FetchDataListener {
-        override fun onFetchComplete(data: String?) {
-            try {
-                val loginData = JSONObject(data)
-                if (!loginData.getBoolean("Error")) {
-                    loading!!.visibility = View.GONE
-                    dashContainer!!.visibility = View.VISIBLE
-                    //println(loginData.getJSONObject("Info").toString(1))
-                    val info = loginData.getJSONObject("Info")
-                    val studentID = info.getString("NPM")
-                    val name = info.getString("Name")
-                    val bornPlace = info.getString("PlaceBorn")
-                    val bornDate = info.getString("BornOn")
-                    val gender = info.getString("Gender")
-                    val religion = info.getString("Religion")
-                    val phone = info.getString("Phone")
-                    val email = info.getString("Email")
-                    val address = info.getString("Address")
-                    val imgURL = info.getString("ProfilePict")
-                    val collegeData = info.getJSONObject("College")
-                    val faculty = collegeData.getString("Faculty")
-                    val branch = collegeData.getString("Branch")
-                    val degree = collegeData.getString("Degree")
-                    val clas = collegeData.getString("Class")
-                    val group = collegeData.getString("Group")
-                    val status = collegeData.getString("Status")
-                    studentInfo = StudentInfo(
-                        studentID,
-                        name,
-                        bornPlace,
-                        bornDate,
-                        gender,
-                        religion,
-                        phone,
-                        email,
-                        address,
-                        imgURL,
-                        faculty,
-                        branch,
-                        degree,
-                        clas,
-                        group,
-                        status
-                    )
-                    studenVM =
-                        ViewModelProvider(this@DashboardActivity).get(StudentsViewModel::class.java)
-                    studenVM.students = studentInfo
-
-                    setupFragment(
-                        DashboardOverview(),
-                        R.id.dashboardFrame,
-                        DashboardOverview().tag.toString()
-                        , null
-                    )
-                    bottomNav!!.menu.getItem(0).isChecked = true
-                    GlobalScope.launch {
-                        updateProfileInfo(studentID, name, imgURL)
-                    }
-                }
-
-            } catch (e: JSONException) {
-                e.printStackTrace()
-            }
-        }
-
-        override fun onFetchFailure(msg: String?) {
-            loading!!.visibility = View.GONE
-            dashContainer!!.visibility = View.GONE
-            notAuthorizedAlert()
-        }
-
-        override fun onFetchStart() {
-
         }
     }
 
